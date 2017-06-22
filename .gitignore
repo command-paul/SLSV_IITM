@@ -4,3 +4,4 @@
 /riscv-isa-sim/riscv-isa-sim/build/
 /riscv-isa-sim/riscv-isa-sim/*.o
 /riscv-isa-sim/riscv-isa-sim/*.d
+/riscv-isa-sim/riscv-isa-sim/*.gch
