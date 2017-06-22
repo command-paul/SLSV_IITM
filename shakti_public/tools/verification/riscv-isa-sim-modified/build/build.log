@@ -1,0 +1,612 @@
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking for ar... ar
+checking for ranlib... ranlib
+checking how to run the C++ preprocessor... g++ -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for ANSI C header files... (cached) yes
+configure: configuring default subproject : riscv
+checking for library containing dlopen... -ldl
+checking for libfesvr_is_present in -lfesvr... yes
+checking for pthread_create in -lpthread... yes
+configure: configuring default subproject : dummy_rocc
+configure: configuring default subproject : softfloat
+configure: configuring default subproject : spike_main
+configure: creating ./config.status
+config.status: creating riscv.mk
+config.status: creating dummy_rocc.mk
+config.status: creating softfloat.mk
+config.status: creating spike_main.mk
+config.status: creating Makefile
+config.status: creating riscv-spike.pc
+config.status: creating riscv-riscv.pc
+config.status: creating riscv-softfloat.pc
+config.status: creating riscv-dummy_rocc.pc
+config.status: creating riscv-spike_main.pc
+config.status: creating config.h
+../riscv/gen_icache `grep "ICACHE_ENTRIES =" ../riscv/mmu.h | sed 's/.* = \(.*\);/\1/'` > icache.h.tmp
+mv icache.h.tmp icache.h
+for insn in add addi addiw addw amoadd_d amoadd_w amoand_d amoand_w amomax_d amomaxu_d amomaxu_w amomax_w amomin_d amominu_d amominu_w amomin_w amoor_d amoor_w amoswap_d amoswap_w amoxor_d amoxor_w and andi auipc beq bge bgeu blt bltu bne c_add c_addi4spn c_addi c_addw c_and c_andi c_beqz c_bnez c_ebreak c_fld c_fldsp c_flw c_flwsp c_fsd c_fsdsp c_fsw c_fswsp c_jal c_jalr c_j c_jr c_li c_lui c_lw c_lwsp c_mv c_or c_slli c_srai c_srli c_sub c_subw c_xor csrrc csrrci csrrs csrrsi csrrw csrrwi c_sw c_swsp div divu divuw divw dret ebreak ecall fadd_d fadd_s fclass_d fclass_s fcvt_d_l fcvt_d_lu fcvt_d_s fcvt_d_w fcvt_d_wu fcvt_l_d fcvt_l_s fcvt_lu_d fcvt_lu_s fcvt_s_d fcvt_s_l fcvt_s_lu fcvt_s_w fcvt_s_wu fcvt_w_d fcvt_w_s fcvt_wu_d fcvt_wu_s fdiv_d fdiv_s fence fence_i feq_d feq_s fld fle_d fle_s flt_d flt_s flw fmadd_d fmadd_s fmax_d fmax_s fmin_d fmin_s fmsub_d fmsub_s fmul_d fmul_s fmv_d_x fmv_s_x fmv_x_d fmv_x_s fnmadd_d fnmadd_s fnmsub_d fnmsub_s fsd fsgnj_d fsgnjn_d fsgnjn_s fsgnj_s fsgnjx_d fsgnjx_s fsqrt_d fsqrt_s fsub_d fsub_s fsw jal jalr lb lbu ld lh lhu lr_d lr_w lui lw lwu mret mul mulh mulhsu mulhu mulw or ori rem remu remuw remw sb sc_d sc_w sd sfence_vm sh sll slli slliw sllw slt slti sltiu sltu sra srai sraiw sraw sret srl srli srliw srlw sub subw sw wfi xor xori ; do \
+		printf 'DEFINE_INSN(%s)\n' "${insn}" ; \
+	done > insn_list.h.tmp
+mv insn_list.h.tmp insn_list.h
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -x c++-header ../riscv/insn_template.h -o insn_template.h.gch
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/processor.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/execute.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/sim.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/interactive.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/trap.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/cachesim.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/mmu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../spike_main/disasm.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/extension.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/extensions.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/rocc.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/regnames.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/devices.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/rom.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/rtc.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/gdbserver.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../riscv/debug_module.cc
+sed 's/NAME/add/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_ADD/' > add.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c add.cc
+sed 's/NAME/addi/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_ADDI/' > addi.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c addi.cc
+sed 's/NAME/addiw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_ADDIW/' > addiw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c addiw.cc
+sed 's/NAME/addw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_ADDW/' > addw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c addw.cc
+sed 's/NAME/amoadd_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOADD_D/' > amoadd_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoadd_d.cc
+sed 's/NAME/amoadd_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOADD_W/' > amoadd_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoadd_w.cc
+sed 's/NAME/amoand_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOAND_D/' > amoand_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoand_d.cc
+sed 's/NAME/amoand_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOAND_W/' > amoand_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoand_w.cc
+sed 's/NAME/amomax_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOMAX_D/' > amomax_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amomax_d.cc
+sed 's/NAME/amomaxu_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOMAXU_D/' > amomaxu_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amomaxu_d.cc
+sed 's/NAME/amomaxu_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOMAXU_W/' > amomaxu_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amomaxu_w.cc
+sed 's/NAME/amomax_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOMAX_W/' > amomax_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amomax_w.cc
+sed 's/NAME/amomin_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOMIN_D/' > amomin_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amomin_d.cc
+sed 's/NAME/amominu_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOMINU_D/' > amominu_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amominu_d.cc
+sed 's/NAME/amominu_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOMINU_W/' > amominu_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amominu_w.cc
+sed 's/NAME/amomin_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOMIN_W/' > amomin_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amomin_w.cc
+sed 's/NAME/amoor_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOOR_D/' > amoor_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoor_d.cc
+sed 's/NAME/amoor_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOOR_W/' > amoor_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoor_w.cc
+sed 's/NAME/amoswap_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOSWAP_D/' > amoswap_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoswap_d.cc
+sed 's/NAME/amoswap_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOSWAP_W/' > amoswap_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoswap_w.cc
+sed 's/NAME/amoxor_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOXOR_D/' > amoxor_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoxor_d.cc
+sed 's/NAME/amoxor_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AMOXOR_W/' > amoxor_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c amoxor_w.cc
+sed 's/NAME/and/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AND/' > and.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c and.cc
+sed 's/NAME/andi/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_ANDI/' > andi.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c andi.cc
+sed 's/NAME/auipc/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_AUIPC/' > auipc.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c auipc.cc
+sed 's/NAME/beq/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_BEQ/' > beq.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c beq.cc
+sed 's/NAME/bge/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_BGE/' > bge.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c bge.cc
+sed 's/NAME/bgeu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_BGEU/' > bgeu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c bgeu.cc
+sed 's/NAME/blt/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_BLT/' > blt.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c blt.cc
+sed 's/NAME/bltu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_BLTU/' > bltu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c bltu.cc
+sed 's/NAME/bne/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_BNE/' > bne.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c bne.cc
+sed 's/NAME/c_add/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_ADD/' > c_add.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_add.cc
+sed 's/NAME/c_addi4spn/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_ADDI4SPN/' > c_addi4spn.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_addi4spn.cc
+sed 's/NAME/c_addi/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_ADDI/' > c_addi.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_addi.cc
+sed 's/NAME/c_addw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_ADDW/' > c_addw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_addw.cc
+sed 's/NAME/c_and/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_AND/' > c_and.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_and.cc
+sed 's/NAME/c_andi/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_ANDI/' > c_andi.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_andi.cc
+sed 's/NAME/c_beqz/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_BEQZ/' > c_beqz.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_beqz.cc
+sed 's/NAME/c_bnez/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_BNEZ/' > c_bnez.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_bnez.cc
+sed 's/NAME/c_ebreak/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_EBREAK/' > c_ebreak.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_ebreak.cc
+sed 's/NAME/c_fld/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_FLD/' > c_fld.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_fld.cc
+sed 's/NAME/c_fldsp/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_FLDSP/' > c_fldsp.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_fldsp.cc
+sed 's/NAME/c_flw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_FLW/' > c_flw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_flw.cc
+sed 's/NAME/c_flwsp/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_FLWSP/' > c_flwsp.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_flwsp.cc
+sed 's/NAME/c_fsd/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_FSD/' > c_fsd.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_fsd.cc
+sed 's/NAME/c_fsdsp/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_FSDSP/' > c_fsdsp.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_fsdsp.cc
+sed 's/NAME/c_fsw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_FSW/' > c_fsw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_fsw.cc
+sed 's/NAME/c_fswsp/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_FSWSP/' > c_fswsp.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_fswsp.cc
+sed 's/NAME/c_jal/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_JAL/' > c_jal.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_jal.cc
+sed 's/NAME/c_jalr/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_JALR/' > c_jalr.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_jalr.cc
+sed 's/NAME/c_j/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_J/' > c_j.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_j.cc
+sed 's/NAME/c_jr/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_JR/' > c_jr.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_jr.cc
+sed 's/NAME/c_li/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_LI/' > c_li.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_li.cc
+sed 's/NAME/c_lui/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_LUI/' > c_lui.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_lui.cc
+sed 's/NAME/c_lw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_LW/' > c_lw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_lw.cc
+sed 's/NAME/c_lwsp/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_LWSP/' > c_lwsp.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_lwsp.cc
+sed 's/NAME/c_mv/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_MV/' > c_mv.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_mv.cc
+sed 's/NAME/c_or/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_OR/' > c_or.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_or.cc
+sed 's/NAME/c_slli/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_SLLI/' > c_slli.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_slli.cc
+sed 's/NAME/c_srai/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_SRAI/' > c_srai.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_srai.cc
+sed 's/NAME/c_srli/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_SRLI/' > c_srli.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_srli.cc
+sed 's/NAME/c_sub/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_SUB/' > c_sub.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_sub.cc
+sed 's/NAME/c_subw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_SUBW/' > c_subw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_subw.cc
+sed 's/NAME/c_xor/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_XOR/' > c_xor.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_xor.cc
+sed 's/NAME/csrrc/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_CSRRC/' > csrrc.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c csrrc.cc
+sed 's/NAME/csrrci/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_CSRRCI/' > csrrci.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c csrrci.cc
+sed 's/NAME/csrrs/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_CSRRS/' > csrrs.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c csrrs.cc
+sed 's/NAME/csrrsi/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_CSRRSI/' > csrrsi.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c csrrsi.cc
+sed 's/NAME/csrrw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_CSRRW/' > csrrw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c csrrw.cc
+sed 's/NAME/csrrwi/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_CSRRWI/' > csrrwi.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c csrrwi.cc
+sed 's/NAME/c_sw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_SW/' > c_sw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_sw.cc
+sed 's/NAME/c_swsp/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_C_SWSP/' > c_swsp.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c c_swsp.cc
+sed 's/NAME/div/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_DIV/' > div.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c div.cc
+sed 's/NAME/divu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_DIVU/' > divu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c divu.cc
+sed 's/NAME/divuw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_DIVUW/' > divuw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c divuw.cc
+sed 's/NAME/divw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_DIVW/' > divw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c divw.cc
+sed 's/NAME/dret/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_DRET/' > dret.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c dret.cc
+sed 's/NAME/ebreak/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_EBREAK/' > ebreak.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ebreak.cc
+sed 's/NAME/ecall/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_ECALL/' > ecall.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ecall.cc
+sed 's/NAME/fadd_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FADD_D/' > fadd_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fadd_d.cc
+sed 's/NAME/fadd_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FADD_S/' > fadd_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fadd_s.cc
+sed 's/NAME/fclass_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCLASS_D/' > fclass_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fclass_d.cc
+sed 's/NAME/fclass_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCLASS_S/' > fclass_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fclass_s.cc
+sed 's/NAME/fcvt_d_l/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_D_L/' > fcvt_d_l.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_d_l.cc
+sed 's/NAME/fcvt_d_lu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_D_LU/' > fcvt_d_lu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_d_lu.cc
+sed 's/NAME/fcvt_d_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_D_S/' > fcvt_d_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_d_s.cc
+sed 's/NAME/fcvt_d_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_D_W/' > fcvt_d_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_d_w.cc
+sed 's/NAME/fcvt_d_wu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_D_WU/' > fcvt_d_wu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_d_wu.cc
+sed 's/NAME/fcvt_l_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_L_D/' > fcvt_l_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_l_d.cc
+sed 's/NAME/fcvt_l_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_L_S/' > fcvt_l_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_l_s.cc
+sed 's/NAME/fcvt_lu_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_LU_D/' > fcvt_lu_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_lu_d.cc
+sed 's/NAME/fcvt_lu_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_LU_S/' > fcvt_lu_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_lu_s.cc
+sed 's/NAME/fcvt_s_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_S_D/' > fcvt_s_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_s_d.cc
+sed 's/NAME/fcvt_s_l/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_S_L/' > fcvt_s_l.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_s_l.cc
+sed 's/NAME/fcvt_s_lu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_S_LU/' > fcvt_s_lu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_s_lu.cc
+sed 's/NAME/fcvt_s_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_S_W/' > fcvt_s_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_s_w.cc
+sed 's/NAME/fcvt_s_wu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_S_WU/' > fcvt_s_wu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_s_wu.cc
+sed 's/NAME/fcvt_w_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_W_D/' > fcvt_w_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_w_d.cc
+sed 's/NAME/fcvt_w_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_W_S/' > fcvt_w_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_w_s.cc
+sed 's/NAME/fcvt_wu_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_WU_D/' > fcvt_wu_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_wu_d.cc
+sed 's/NAME/fcvt_wu_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FCVT_WU_S/' > fcvt_wu_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fcvt_wu_s.cc
+sed 's/NAME/fdiv_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FDIV_D/' > fdiv_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fdiv_d.cc
+sed 's/NAME/fdiv_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FDIV_S/' > fdiv_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fdiv_s.cc
+sed 's/NAME/fence/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FENCE/' > fence.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fence.cc
+sed 's/NAME/fence_i/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FENCE_I/' > fence_i.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fence_i.cc
+sed 's/NAME/feq_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FEQ_D/' > feq_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c feq_d.cc
+sed 's/NAME/feq_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FEQ_S/' > feq_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c feq_s.cc
+sed 's/NAME/fld/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FLD/' > fld.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fld.cc
+sed 's/NAME/fle_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FLE_D/' > fle_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fle_d.cc
+sed 's/NAME/fle_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FLE_S/' > fle_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fle_s.cc
+sed 's/NAME/flt_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FLT_D/' > flt_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c flt_d.cc
+sed 's/NAME/flt_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FLT_S/' > flt_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c flt_s.cc
+sed 's/NAME/flw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FLW/' > flw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c flw.cc
+sed 's/NAME/fmadd_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMADD_D/' > fmadd_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmadd_d.cc
+sed 's/NAME/fmadd_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMADD_S/' > fmadd_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmadd_s.cc
+sed 's/NAME/fmax_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMAX_D/' > fmax_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmax_d.cc
+sed 's/NAME/fmax_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMAX_S/' > fmax_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmax_s.cc
+sed 's/NAME/fmin_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMIN_D/' > fmin_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmin_d.cc
+sed 's/NAME/fmin_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMIN_S/' > fmin_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmin_s.cc
+sed 's/NAME/fmsub_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMSUB_D/' > fmsub_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmsub_d.cc
+sed 's/NAME/fmsub_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMSUB_S/' > fmsub_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmsub_s.cc
+sed 's/NAME/fmul_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMUL_D/' > fmul_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmul_d.cc
+sed 's/NAME/fmul_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMUL_S/' > fmul_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmul_s.cc
+sed 's/NAME/fmv_d_x/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMV_D_X/' > fmv_d_x.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmv_d_x.cc
+sed 's/NAME/fmv_s_x/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMV_S_X/' > fmv_s_x.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmv_s_x.cc
+sed 's/NAME/fmv_x_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMV_X_D/' > fmv_x_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmv_x_d.cc
+sed 's/NAME/fmv_x_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FMV_X_S/' > fmv_x_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fmv_x_s.cc
+sed 's/NAME/fnmadd_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FNMADD_D/' > fnmadd_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fnmadd_d.cc
+sed 's/NAME/fnmadd_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FNMADD_S/' > fnmadd_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fnmadd_s.cc
+sed 's/NAME/fnmsub_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FNMSUB_D/' > fnmsub_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fnmsub_d.cc
+sed 's/NAME/fnmsub_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FNMSUB_S/' > fnmsub_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fnmsub_s.cc
+sed 's/NAME/fsd/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSD/' > fsd.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsd.cc
+sed 's/NAME/fsgnj_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSGNJ_D/' > fsgnj_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsgnj_d.cc
+sed 's/NAME/fsgnjn_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSGNJN_D/' > fsgnjn_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsgnjn_d.cc
+sed 's/NAME/fsgnjn_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSGNJN_S/' > fsgnjn_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsgnjn_s.cc
+sed 's/NAME/fsgnj_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSGNJ_S/' > fsgnj_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsgnj_s.cc
+sed 's/NAME/fsgnjx_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSGNJX_D/' > fsgnjx_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsgnjx_d.cc
+sed 's/NAME/fsgnjx_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSGNJX_S/' > fsgnjx_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsgnjx_s.cc
+sed 's/NAME/fsqrt_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSQRT_D/' > fsqrt_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsqrt_d.cc
+sed 's/NAME/fsqrt_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSQRT_S/' > fsqrt_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsqrt_s.cc
+sed 's/NAME/fsub_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSUB_D/' > fsub_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsub_d.cc
+sed 's/NAME/fsub_s/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSUB_S/' > fsub_s.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsub_s.cc
+sed 's/NAME/fsw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_FSW/' > fsw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c fsw.cc
+sed 's/NAME/jal/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_JAL/' > jal.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c jal.cc
+sed 's/NAME/jalr/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_JALR/' > jalr.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c jalr.cc
+sed 's/NAME/lb/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LB/' > lb.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lb.cc
+sed 's/NAME/lbu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LBU/' > lbu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lbu.cc
+sed 's/NAME/ld/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LD/' > ld.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ld.cc
+sed 's/NAME/lh/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LH/' > lh.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lh.cc
+sed 's/NAME/lhu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LHU/' > lhu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lhu.cc
+sed 's/NAME/lr_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LR_D/' > lr_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lr_d.cc
+sed 's/NAME/lr_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LR_W/' > lr_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lr_w.cc
+sed 's/NAME/lui/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LUI/' > lui.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lui.cc
+sed 's/NAME/lw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LW/' > lw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lw.cc
+sed 's/NAME/lwu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_LWU/' > lwu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c lwu.cc
+sed 's/NAME/mret/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_MRET/' > mret.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c mret.cc
+sed 's/NAME/mul/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_MUL/' > mul.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c mul.cc
+sed 's/NAME/mulh/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_MULH/' > mulh.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c mulh.cc
+sed 's/NAME/mulhsu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_MULHSU/' > mulhsu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c mulhsu.cc
+sed 's/NAME/mulhu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_MULHU/' > mulhu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c mulhu.cc
+sed 's/NAME/mulw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_MULW/' > mulw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c mulw.cc
+sed 's/NAME/or/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_OR/' > or.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c or.cc
+sed 's/NAME/ori/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_ORI/' > ori.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ori.cc
+sed 's/NAME/rem/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_REM/' > rem.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c rem.cc
+sed 's/NAME/remu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_REMU/' > remu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c remu.cc
+sed 's/NAME/remuw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_REMUW/' > remuw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c remuw.cc
+sed 's/NAME/remw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_REMW/' > remw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c remw.cc
+sed 's/NAME/sb/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SB/' > sb.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sb.cc
+sed 's/NAME/sc_d/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SC_D/' > sc_d.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sc_d.cc
+sed 's/NAME/sc_w/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SC_W/' > sc_w.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sc_w.cc
+sed 's/NAME/sd/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SD/' > sd.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sd.cc
+sed 's/NAME/sfence_vm/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SFENCE_VM/' > sfence_vm.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sfence_vm.cc
+sed 's/NAME/sh/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SH/' > sh.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sh.cc
+sed 's/NAME/sll/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SLL/' > sll.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sll.cc
+sed 's/NAME/slli/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SLLI/' > slli.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c slli.cc
+sed 's/NAME/slliw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SLLIW/' > slliw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c slliw.cc
+sed 's/NAME/sllw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SLLW/' > sllw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sllw.cc
+sed 's/NAME/slt/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SLT/' > slt.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c slt.cc
+sed 's/NAME/slti/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SLTI/' > slti.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c slti.cc
+sed 's/NAME/sltiu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SLTIU/' > sltiu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sltiu.cc
+sed 's/NAME/sltu/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SLTU/' > sltu.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sltu.cc
+sed 's/NAME/sra/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRA/' > sra.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sra.cc
+sed 's/NAME/srai/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRAI/' > srai.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c srai.cc
+sed 's/NAME/sraiw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRAIW/' > sraiw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sraiw.cc
+sed 's/NAME/sraw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRAW/' > sraw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sraw.cc
+sed 's/NAME/sret/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRET/' > sret.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sret.cc
+sed 's/NAME/srl/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRL/' > srl.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c srl.cc
+sed 's/NAME/srli/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRLI/' > srli.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c srli.cc
+sed 's/NAME/srliw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRLIW/' > srliw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c srliw.cc
+sed 's/NAME/srlw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SRLW/' > srlw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c srlw.cc
+sed 's/NAME/sub/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SUB/' > sub.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sub.cc
+sed 's/NAME/subw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SUBW/' > subw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c subw.cc
+sed 's/NAME/sw/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_SW/' > sw.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c sw.cc
+sed 's/NAME/wfi/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_WFI/' > wfi.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c wfi.cc
+sed 's/NAME/xor/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_XOR/' > xor.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c xor.cc
+sed 's/NAME/xori/' ../riscv/insn_template.cc | sed 's/OPCODE/ MATCH_XORI/' > xori.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c xori.cc
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_add.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_classify.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_div.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_eq.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_eq_signaling.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_isSignalingNaN.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_le.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_le_quiet.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_lt.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_lt_quiet.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_mulAdd.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_mul.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_rem.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_roundToInt.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_sqrt.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_sub.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_f64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_i32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_i32_r_minMag.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_i64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_i64_r_minMag.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_ui32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_ui32_r_minMag.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_ui64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f32_to_ui64_r_minMag.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_add.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_classify.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_div.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_eq.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_eq_signaling.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_isSignalingNaN.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_le.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_le_quiet.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_lt.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_lt_quiet.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_mulAdd.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_mul.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_rem.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_roundToInt.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_sqrt.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_sub.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_f32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_i32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_i32_r_minMag.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_i64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_i64_r_minMag.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_ui32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_ui32_r_minMag.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_ui64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/f64_to_ui64_r_minMag.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/i32_to_f32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/i32_to_f64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/i64_to_f32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/i64_to_f64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_add128.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_addCarryM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_addComplCarryM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_addMagsF32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_addMagsF64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_addM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_approxRecip32_1.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_approxRecipSqrt32_1.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_commonNaNToF32UI.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_commonNaNToF64UI.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_compare96M.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_countLeadingZeros32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_countLeadingZeros64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_countLeadingZeros8.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_f32UIToCommonNaN.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_f64UIToCommonNaN.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_mul64To128.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_mulAddF32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_mulAddF64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_negXM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_normRoundPackToF32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_normRoundPackToF64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_normSubnormalF32Sig.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_normSubnormalF64Sig.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/softfloat_raiseFlags.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/softfloat_state.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_propagateNaNF32UI.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_propagateNaNF64UI.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_remStepMBy32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_roundPackMToI64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_roundPackMToUI64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_roundPackToF32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_roundPackToF64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_roundPackToI32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_roundPackToI64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_roundPackToUI32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_roundPackToUI64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shiftRightJam128.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shiftRightJam32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shiftRightJam64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shiftRightJam64Extra.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shortShiftLeft64To96M.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shortShiftLeftM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shortShiftRightExtendM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shortShiftRightJam64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shortShiftRightJam64Extra.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shortShiftRightJamM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_shortShiftRightM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_sub128.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_subMagsF32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_subMagsF64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/s_subM.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/ui32_to_f32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/ui32_to_f64.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/ui64_to_f32.c
+gcc -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../softfloat/ui64_to_f64.c
+g++ -L. -L/home/neel/riscv/lib  -Wl,-rpath,//home/neel/riscv/lib -Wl,-rpath,/home/neel/riscv/lib -shared -o libsoftfloat.so  f32_add.o f32_classify.o f32_div.o f32_eq.o f32_eq_signaling.o f32_isSignalingNaN.o f32_le.o f32_le_quiet.o f32_lt.o f32_lt_quiet.o f32_mulAdd.o f32_mul.o f32_rem.o f32_roundToInt.o f32_sqrt.o f32_sub.o f32_to_f64.o f32_to_i32.o f32_to_i32_r_minMag.o f32_to_i64.o f32_to_i64_r_minMag.o f32_to_ui32.o f32_to_ui32_r_minMag.o f32_to_ui64.o f32_to_ui64_r_minMag.o f64_add.o f64_classify.o f64_div.o f64_eq.o f64_eq_signaling.o f64_isSignalingNaN.o f64_le.o f64_le_quiet.o f64_lt.o f64_lt_quiet.o f64_mulAdd.o f64_mul.o f64_rem.o f64_roundToInt.o f64_sqrt.o f64_sub.o f64_to_f32.o f64_to_i32.o f64_to_i32_r_minMag.o f64_to_i64.o f64_to_i64_r_minMag.o f64_to_ui32.o f64_to_ui32_r_minMag.o f64_to_ui64.o f64_to_ui64_r_minMag.o i32_to_f32.o i32_to_f64.o i64_to_f32.o i64_to_f64.o s_add128.o s_addCarryM.o s_addComplCarryM.o s_addMagsF32.o s_addMagsF64.o s_addM.o s_approxRecip32_1.o s_approxRecipSqrt32_1.o s_commonNaNToF32UI.o s_commonNaNToF64UI.o s_compare96M.o s_countLeadingZeros32.o s_countLeadingZeros64.o s_countLeadingZeros8.o s_f32UIToCommonNaN.o s_f64UIToCommonNaN.o s_mul64To128.o s_mulAddF32.o s_mulAddF64.o s_negXM.o s_normRoundPackToF32.o s_normRoundPackToF64.o s_normSubnormalF32Sig.o s_normSubnormalF64Sig.o softfloat_raiseFlags.o softfloat_state.o s_propagateNaNF32UI.o s_propagateNaNF64UI.o s_remStepMBy32.o s_roundPackMToI64.o s_roundPackMToUI64.o s_roundPackToF32.o s_roundPackToF64.o s_roundPackToI32.o s_roundPackToI64.o s_roundPackToUI32.o s_roundPackToUI64.o s_shiftRightJam128.o s_shiftRightJam32.o s_shiftRightJam64.o s_shiftRightJam64Extra.o s_shortShiftLeft64To96M.o s_shortShiftLeftM.o s_shortShiftRightExtendM.o s_shortShiftRightJam64.o s_shortShiftRightJam64Extra.o s_shortShiftRightJamM.o s_shortShiftRightM.o s_sub128.o s_subMagsF32.o s_subMagsF64.o s_subM.o ui32_to_f32.o ui32_to_f64.o ui64_to_f32.o ui64_to_f64.o  -lpthread -lfesvr -ldl 
+g++ -L. -L/home/neel/riscv/lib  -Wl,-rpath,//home/neel/riscv/lib -Wl,-rpath,/home/neel/riscv/lib -shared -o libriscv.so  processor.o execute.o sim.o interactive.o trap.o cachesim.o mmu.o disasm.o extension.o extensions.o rocc.o regnames.o devices.o rom.o rtc.o gdbserver.o debug_module.o add.o addi.o addiw.o addw.o amoadd_d.o amoadd_w.o amoand_d.o amoand_w.o amomax_d.o amomaxu_d.o amomaxu_w.o amomax_w.o amomin_d.o amominu_d.o amominu_w.o amomin_w.o amoor_d.o amoor_w.o amoswap_d.o amoswap_w.o amoxor_d.o amoxor_w.o and.o andi.o auipc.o beq.o bge.o bgeu.o blt.o bltu.o bne.o c_add.o c_addi4spn.o c_addi.o c_addw.o c_and.o c_andi.o c_beqz.o c_bnez.o c_ebreak.o c_fld.o c_fldsp.o c_flw.o c_flwsp.o c_fsd.o c_fsdsp.o c_fsw.o c_fswsp.o c_jal.o c_jalr.o c_j.o c_jr.o c_li.o c_lui.o c_lw.o c_lwsp.o c_mv.o c_or.o c_slli.o c_srai.o c_srli.o c_sub.o c_subw.o c_xor.o csrrc.o csrrci.o csrrs.o csrrsi.o csrrw.o csrrwi.o c_sw.o c_swsp.o div.o divu.o divuw.o divw.o dret.o ebreak.o ecall.o fadd_d.o fadd_s.o fclass_d.o fclass_s.o fcvt_d_l.o fcvt_d_lu.o fcvt_d_s.o fcvt_d_w.o fcvt_d_wu.o fcvt_l_d.o fcvt_l_s.o fcvt_lu_d.o fcvt_lu_s.o fcvt_s_d.o fcvt_s_l.o fcvt_s_lu.o fcvt_s_w.o fcvt_s_wu.o fcvt_w_d.o fcvt_w_s.o fcvt_wu_d.o fcvt_wu_s.o fdiv_d.o fdiv_s.o fence.o fence_i.o feq_d.o feq_s.o fld.o fle_d.o fle_s.o flt_d.o flt_s.o flw.o fmadd_d.o fmadd_s.o fmax_d.o fmax_s.o fmin_d.o fmin_s.o fmsub_d.o fmsub_s.o fmul_d.o fmul_s.o fmv_d_x.o fmv_s_x.o fmv_x_d.o fmv_x_s.o fnmadd_d.o fnmadd_s.o fnmsub_d.o fnmsub_s.o fsd.o fsgnj_d.o fsgnjn_d.o fsgnjn_s.o fsgnj_s.o fsgnjx_d.o fsgnjx_s.o fsqrt_d.o fsqrt_s.o fsub_d.o fsub_s.o fsw.o jal.o jalr.o lb.o lbu.o ld.o lh.o lhu.o lr_d.o lr_w.o lui.o lw.o lwu.o mret.o mul.o mulh.o mulhsu.o mulhu.o mulw.o or.o ori.o rem.o remu.o remuw.o remw.o sb.o sc_d.o sc_w.o sd.o sfence_vm.o sh.o sll.o slli.o slliw.o sllw.o slt.o slti.o sltiu.o sltu.o sra.o srai.o sraiw.o sraw.o sret.o srl.o srli.o srliw.o srlw.o sub.o subw.o sw.o wfi.o xor.o xori.o libsoftfloat.so  -lsoftfloat -lpthread -lfesvr -ldl 
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../dummy_rocc/dummy_rocc.cc
+echo "int _spike_main( int arg ) { return arg; }" > _spike_main.cc
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c _spike_main.cc
+g++ -L. -L/home/neel/riscv/lib  -Wl,-rpath,//home/neel/riscv/lib -Wl,-rpath,/home/neel/riscv/lib -shared -o libspike_main.so  _spike_main.o libriscv.so libsoftfloat.so  -lriscv  -lsoftfloat -lpthread -lfesvr -ldl 
+g++ -L. -L/home/neel/riscv/lib  -Wl,-rpath,//home/neel/riscv/lib -Wl,-rpath,/home/neel/riscv/lib -shared -o libdummy_rocc.so  dummy_rocc.o libsoftfloat.so libriscv.so libspike_main.so  -lsoftfloat  -lriscv  -lspike_main -lpthread -lfesvr -ldl 
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../spike_main/spike.cc
+g++ -L. -L/home/neel/riscv/lib  -Wl,-rpath,//home/neel/riscv/lib -Wl,-rpath,/home/neel/riscv/lib -o spike spike.o  -lspike_main  -lriscv  -lsoftfloat -lpthread -lfesvr -ldl 
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../spike_main/spike-dasm.cc
+g++ -L. -L/home/neel/riscv/lib  -Wl,-rpath,//home/neel/riscv/lib -Wl,-rpath,/home/neel/riscv/lib -o spike-dasm spike-dasm.o  -lspike_main  -lriscv  -lsoftfloat -lpthread -lfesvr -ldl 
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../spike_main/xspike.cc
+g++ -L. -L/home/neel/riscv/lib  -Wl,-rpath,//home/neel/riscv/lib -Wl,-rpath,/home/neel/riscv/lib -o xspike xspike.o  -lspike_main  -lriscv  -lsoftfloat -lpthread -lfesvr -ldl 
+g++ -fPIC -MMD -MP -I/home/neel/riscv/include  -Wall -Wno-unused -g -O2 -std=c++11 -DPREFIX=\"/home/neel/riscv\" -Werror -I. -I.. -I../riscv -I../dummy_rocc -I../softfloat -I../spike_main -c ../spike_main/termios-xspike.cc
+g++ -L. -L/home/neel/riscv/lib  -Wl,-rpath,//home/neel/riscv/lib -Wl,-rpath,/home/neel/riscv/lib -o termios-xspike termios-xspike.o  -lspike_main  -lriscv  -lsoftfloat -lpthread -lfesvr -ldl 
+../scripts/mk-install-dirs.sh //home/neel/riscv/include/spike
+for file in ../riscv/common.h ../riscv/decode.h ../riscv/devices.h ../riscv/disasm.h ../riscv/mmu.h ../riscv/processor.h ../riscv/sim.h ../riscv/trap.h ../riscv/encoding.h ../riscv/cachesim.h ../riscv/memtracer.h ../riscv/tracer.h ../riscv/extension.h ../riscv/rocc.h ../riscv/insn_template.h ../riscv/mulhi.h ../riscv/gdbserver.h ../riscv/debug_module.h icache.h insn_list.h ../softfloat/internals.h ../softfloat/primitives.h ../softfloat/primitiveTypes.h ../softfloat/softfloat.h ../softfloat/softfloat_types.h ../softfloat/specialize.h config.h; \
+  do \
+    /usr/bin/install -c -m 444 $file //home/neel/riscv/include/spike; \
+  done
+../scripts/mk-install-dirs.sh //home/neel/riscv/lib
+for file in libriscv.so libdummy_rocc.so libsoftfloat.so libspike_main.so; \
+  do \
+    /usr/bin/install -c -m 644 $file //home/neel/riscv/lib; \
+  done
+../scripts/mk-install-dirs.sh //home/neel/riscv/bin
+for file in spike spike-dasm xspike termios-xspike; \
+  do \
+    /usr/bin/install -c -m 555 $file //home/neel/riscv/bin; \
+  done
+../scripts/mk-install-dirs.sh //home/neel/riscv/lib/pkgconfig/
+for file in riscv-riscv.pc riscv-dummy_rocc.pc riscv-softfloat.pc riscv-spike_main.pc; \
+  do \
+    /usr/bin/install -c -m 444 $file //home/neel/riscv/lib/pkgconfig/; \
+  done
