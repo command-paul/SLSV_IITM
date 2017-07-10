@@ -6,9 +6,9 @@ package L_DMI;
 		 
 import Vector       :: *;
 
-import "BDPI" function Action char initInterface();
-import "BDPI" function Action unsigned long long int getCommand();
-void sendResponse();
-// ================================================================
+import "BDPI" function Action initInterface();
+import "BDPI" function ActionValue #(Bit #(40)) getCommand();
+import "BDPI" function Action sendResponse(Bit #(64) data);
+// =================import "BDPI" function Action===============================================
 
 endpackage: L_DMI 
