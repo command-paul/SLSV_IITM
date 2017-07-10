@@ -28,6 +28,10 @@ import "BDPI" function Action c_write (Bit #(64) addr, Bit #(32) x, Bit #(64) n_
 
 import "BDPI" function ActionValue #(Vector #(10, Bit #(32))) c_get_console_command ();
 
+// import "BDPI" function Bool init_RBB_Server ();
+// import "BDPI" function Bool listen_RBB ();
+
+
 // ================================================================
 
 endpackage: C_import_decls

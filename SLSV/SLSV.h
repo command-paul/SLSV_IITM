@@ -1,4 +1,4 @@
-0#include <cstdio.h>
+#include <cstdio.h>
 #include <cstdlib.h>
 #include <vector>
 #include <bitset>
@@ -36,7 +36,7 @@ public:
 	bool cpuid();
 	bool checkpoint(FILE* CKPT);
 	bool restore(FILE* CKPT);
-
+	
 private:
 	FILE* Input_DUT;
 	FILE* Input_ISA_SIM;

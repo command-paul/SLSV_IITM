@@ -5,8 +5,10 @@
 #include <pthread.h>
 #include <stdbool.h>
 #include <stdint.h>
-
+#include <set>
 // is a big int required to hanndle the cycle count and the time since execution start ?
+
+// use SSE simd instructions for diff caompariosns over the entire range
 
 // Global Variables
 std::string EXIT_CAUSE ;
@@ -17,7 +19,16 @@ FILE* CFG2 = NULL;
 
 // helper fuction ceclaritions 
 
+// query value
 
+// add update(pool vector)
+
+// user defined Design Rule Check (DRC) 
+	// a DRC function pointer 
+	// A count of total declared DRC`s
+	// a Template DRC // eg a privillage mode violation :P
+	// a DRC run Wrapper
+	// and failure handling 
 
 int main(int argc, char const *argv[])
 {
@@ -26,7 +37,7 @@ int main(int argc, char const *argv[])
 		exit();
 		}
 	argc = argc -2 ;
-	uint16_t parsed =0 ;
+	uint16_t parsed =0;
 	while(argc >=1){
 		/// parse instruction
 		// options come in with option flags 
@@ -49,8 +60,15 @@ int main(int argc, char const *argv[])
 	if (verbosity == 5) printf("input parsed :: %d options parsed ", parsed);
 	// configutation stage before staring the modules
 
+	// make this a seperate utility to help the user configure the min list ext :P
 
+	// call a helper function tha t parses the file once and extracts a list of all declared registers and memory resources
+	// take a set intersection and intimate the user that this is the list of availabe signals to diff on
+	// take the set union and intimate the user that tha tuch s[ace was goint to be alocated to keep track of all the variables
 
+	// allocate space for the everything -- because not cared for locations can be different because they are 
+	// create a pool vector for teach of the memory files in the minlist 
+	// parse the sensitivvity list and now enable the updaete methods
 	// find the min list of the signals and malloc the area required for 
 		//storing all the signals
 
@@ -59,7 +77,6 @@ int main(int argc, char const *argv[])
 	// pass configuration instructions to the isntantiated child processes
 
 	// start the pool 
-
 	// Barrier sync 1
 
 	// LOOP :: 
@@ -68,11 +85,14 @@ int main(int argc, char const *argv[])
 		// exceptions are printed since we are in min dev mode
 		// if error break and notify user
 		// compute appropriate command		
+		// trigger barrier sync only after bboth units have sent their end of updates commands
+		// maintain a diff vector and update diffs only 
 		// barrier sync 
 
 	return 0;
 }	
 
-	// handle exits i.e. define the atexit function triggered 
 
+	// handle exits i.e. define the atexit function triggered 
+	
 	void atexit()

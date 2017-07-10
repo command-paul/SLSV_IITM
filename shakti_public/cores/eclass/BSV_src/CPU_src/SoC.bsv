@@ -53,6 +53,7 @@ import Utils				:: *;
 import Req_Rsp				:: *;
 import Sys_Configs		:: *;
 import C_import_decls	:: *;
+import Lop 				:: *;
 
 import ISA_Defs			:: *;
 import CPU					:: *;
@@ -318,6 +319,12 @@ module mkSoC (SoC_IFC);
    // Miscellanious register
    Reg #(Addr) rg_addr <- mkRegU;
    
+  	//Reg # accept = False;
+   //Reg # execute = False;
+
+   //Bool accept  = False;
+   //Bool execute  = False ;
+
    // An automatic Finite-State-Machine emulates the testbench for Soft-Debug mode
    // Execution starts from the first clock cycle
    // CPU, and Instruction and Data Memories are initialized. Thereafter, the console waits for inputs provided through terminal to proceed
@@ -330,13 +337,16 @@ module mkSoC (SoC_IFC);
 	 // Initialize Memory
 	 initialize_memory;
 
+	init_RBB_Server;
+
 	 // Run
 	 while (!halt) seq
 		 action // Read command from console
-			 let cmd <- c_get_console_command;
-			 rg_console_command <= cmd;
+		 	 //let cmd <- c_get_console_command;
+			 get_message;
+			 //rg_console_command <= cmd;
 		 endaction
-
+		 
 		// If command is continue, execute all instructions without breaking
 		 if (console_command == cmd_continue) seq
 			 action
@@ -411,8 +421,9 @@ module mkSoC (SoC_IFC);
 			 endseq
 
 		// If command is unknown, print error message and ignore the command
-		 else
-			 $display ("Error: Ignored unknown command: %0d", console_command);
+		//FIXME REMOVED becaue it was too loud
+		 //else
+		//	 $display ("Error: Ignored unknown command: %0d", console_command);
 	 endseq
       endseq
       );

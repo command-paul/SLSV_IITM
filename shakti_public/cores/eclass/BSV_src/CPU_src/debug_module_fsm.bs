@@ -1,0 +1,192 @@
+// this is the code that abhinaya originally wrote for the verification mode for the ecalss soc
+// imm replacing its front parsers with the ones required by open ocd too support all its functionality
+// i sahal later modify open ocd to acept piped interfaces
+
+
+// >>>> PG comment
+
+
+
+
+
+	// Miscellanious registers
+	Reg #(CounterData) rg_prev_instret <- mkReg(0);			// Number of instructions retired before current step
+	Reg #(CounterData) rg_instret <- mkReg(0);			// Number of instructions retired after current step
+// >>>> PG comment this is instruction counter initialistation
+
+
+	mkAutoFSM (
+		seq
+// >>>> PG comment Required initialisation
+			initialize_cpu;
+			initialize_memory;
+
+
+// >>>> PG comment Stuff to open the file to dump in and handle errors
+			action
+				// Open Architectural Register File dump target file with write access
+				File file_handle <- $fopen (`FILE_REG_DUMP, "w");
+
+				// Validate dump target
+				if (file_handle == InvalidFile) action // Exit if invalid
+					$display($time, " TB: Cannot open file '%s' for dumping state. Exiting!", `FILE_REG_DUMP);
+					$finish();
+				endaction				
+				else  // If valid: update handle
+					file_arf_dump <= file_handle;
+			endaction
+
+			// Execute all instructions untill the end of instruction stream
+			// End of instruction stream is currently marked by 'illegal' instruction (0x0000006F)
+			// One instruction is retired at a time using 'run_step' method of the CPU Debug interface
+			// At the end of each step, current state of the Architectural Register File is printed to a file
+
+
+// >>>> PG comment a loop to forever next step
+			while (True) seq
+				rg_prev_instret <= proc.debug_ifc.read_instret;
+				proc.debug_ifc.run_step(tagged Invalid);
+				if(proc.debug_ifc.read_instret - rg_prev_instret > 0) seq // IF condition ensures redundant states are not printed
+														// Useful for multi-cycle instructions and when a branch instruction flushes the pipeline
+					rg_instret <= unpack(proc.debug_ifc.read_instret);		
+					dump_arch_state_to_file;
+					if(halt) break;
+				endseq
+			endseq
+		endseq
+	);
+// >>>> PG comment end of verification utility it contains a very minimalistic start up
+
+
+
+		`ifdef CPU_MODE_DEBUG;
+
+
+
+   // =================== SOFT-DEBUG ENVIRONMENT ====================================
+
+
+// >>>> PG comment this is the interactive debug mode which i shall be hacking into
+
+
+   // ----------------
+   // Main behavior: process a queue of interactive commands
+
+// >>>> PG commentspace for upto 10 8 bit ascii symbols
+   Reg #(Vector #(10, Bit #(32))) rg_console_command <- mkRegU;
+   Bit #(32) console_argc     = rg_console_command [0];
+   Bit #(32) console_command  = rg_console_command [1];
+   Bit #(32) console_arg_1    = rg_console_command [2];
+   Bit #(32) console_arg_2    = rg_console_command [3];
+   Bit #(32) console_arg_3    = rg_console_command [4];
+   Bit #(32) console_arg_4    = rg_console_command [5];
+   Bit #(32) console_arg_5    = rg_console_command [6];
+   Bit #(32) console_arg_6    = rg_console_command [7];
+   Bit #(32) console_arg_7    = rg_console_command [8];
+   Bit #(32) console_arg_8    = rg_console_command [9];
+
+   // Miscellanious register
+   Reg #(Addr) rg_addr <- mkRegU;
+   
+   // An automatic Finite-State-Machine emulates the testbench for Soft-Debug mode
+   // Execution starts from the first clock cycle
+   // CPU, and Instruction and Data Memories are initialized. Thereafter, the console waits for inputs provided through terminal to proceed
+   mkAutoFSM (
+    seq
+	
+	 // Initialize CPU
+	 initialize_cpu;
+
+	 // Initialize Memory
+	 initialize_memory;
+
+
+// >>>> PG comment forever :: get command an dexecute command
+
+	 // Run
+	 while (!halt) seq
+		 action // Read command from console
+			 let cmd <- c_get_console_command;
+			 rg_console_command <= cmd;
+		 endaction
+	// >>>> PG comment handle commands
+		// If command is continue, execute all instructions without breaking
+		 if (console_command == cmd_continue) seq
+			 action
+		  Maybe #(Data) mpc = (  (console_argc == 1)
+						? tagged Invalid
+						: tagged Valid console_arg_1);
+		  proc.debug_ifc.run_continue (mpc);
+			 endaction
+			 display_stop_reason (" TB: Stop reason: ", proc.debug_ifc.stop_reason, "\n");
+			 dump_arch_state;
+		 endseq
+
+		// If command is dump, dump the Architectural Register File (here, dump to console)
+		 else if (console_command == cmd_dump)
+			 dump_arch_state;
+
+		// If command is quit, terminate execution
+		 else if (console_command == cmd_quit)
+			 break;
+
+		// If commnad is reset, reset CPU to initial state
+		 else if (console_command == cmd_reset)
+			 initialize_cpu;
+
+		// If command is step, execute the next instruction to completion
+		// Currently, even for instructions that take multiple cycles to complete (eg. LOAD/STORE), the execution terminates after the first cycle
+		// @TODO this behaviour may be fixed by using 'rg_instret' of module CPU if the desired behaviour is to run the instruction to completion
+		 else if (console_command == cmd_step) seq
+			 action
+		  Maybe #(Addr) mpc = (  (console_argc == 1)
+						? tagged Invalid
+						: tagged Valid console_arg_1);
+		  proc.debug_ifc.run_step (mpc);
+			 endaction
+			 action
+		  display_stop_reason (" TB: Stop reason: ", proc.debug_ifc.stop_reason, "\n");
+		  $display ("");
+			 endaction
+		 endseq
+
+		// If command is step_until, execute 'n' instructions. 'n' is a command line argument
+		 else if (console_command == cmd_step_until) seq
+			 while ((truncate(proc.debug_ifc.read_instret) < console_arg_1) && (proc.debug_ifc.stop_reason != CPU_STOP_EXIT))
+		  proc.debug_ifc.run_step (tagged Invalid);
+			 action
+		  display_stop_reason (" TB: Stop reason: ", proc.debug_ifc.stop_reason, "\n");
+		  $display ("");
+			 endaction
+			 dump_arch_state;
+		 endseq
+
+		// If command is verbosity, change the verbosity of the CPU to 'v'. 'v' is a command line argument
+		// 'verbosity' is a variable used to control the amount of messages printed during execution, mainly used for debugging purposes
+		// if 'verbosity' is set to 0, no messages will be displayed on the console (desired behaviour)
+		 else if (console_command == cmd_verbosity) action
+			 int v = unpack (truncate (console_arg_1));
+			 $display ($time, " TB: Setting verbosity to %0d", v);
+			 proc.debug_ifc.set_verbosity (v);
+		 endaction
+
+		// If command is dump_memory, dump the data memory region in the range specified through command line (here, to the console)
+		 else if (console_command == cmd_dump_mem)
+			 for (rg_addr <= (console_arg_1 & 32'hFFFF_FFFC);
+			 rg_addr < console_arg_2;
+			 rg_addr <= rg_addr + 4)
+			 seq
+		  proc.debug_ifc.req_read_memW (rg_addr);
+		  action
+			  let d <- proc.debug_ifc.rsp_read_memW;
+			  $display ($time, " TB: %08h: %08h", rg_addr, d);
+		  endaction
+			 endseq
+
+		// If command is unknown, print error message and ignore the command
+		 else
+			 $display ("Error: Ignored unknown command: %0d", console_command);
+	 endseq
+      endseq
+      );
+

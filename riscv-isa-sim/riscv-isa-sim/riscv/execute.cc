@@ -30,6 +30,8 @@ static void commit_log_print_insn(state_t* state, reg_t pc, insn_t insn)
             state->log_reg_write.addr & 1 ? 'f' : 'x', // original inplememtation reg update print
             state->log_reg_write.addr >> 1,
             state->log_reg_write.data,xf,reg_addr);
+    //if(state->log_reg_write.addr & 1)fprintf(stderr ,">> FCSR %016" PRIx64 "\n",((state->fflags << FSR_AEXC_SHIFT) | (state->frm << FSR_RD_SHIFT)));
+    // ^ one line mod to print FCSR when any floating point reg is updated.
   } 
   //change in memory
   else if ((state->store_addr)&&(Single_Core_Track.careM(state->store_addr))) {
