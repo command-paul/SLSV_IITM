@@ -1,7 +1,7 @@
-/riscv-isa-sim/riscv/
-/riscv-isa-sim/riscv-pk/
-/riscv-isa-sim/riscv-fesvr/
-/riscv-isa-sim/riscv-isa-sim/build/
-/riscv-isa-sim/riscv-isa-sim/*.o
-/riscv-isa-sim/riscv-isa-sim/*.d
-/riscv-isa-sim/riscv-isa-sim/*.gch
+/riscv/
+/riscv-pk/
+/riscv-fesvr/
+/riscv-isa-sim/build/
+/riscv-isa-sim/*.o
+/riscv-isa-sim/*.d
+/riscv-isa-sim/*.gch

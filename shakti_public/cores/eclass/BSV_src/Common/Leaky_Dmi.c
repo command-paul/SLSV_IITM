@@ -9,12 +9,12 @@ FILE * Input;
 FILE * Output;
 
 
-char initInterface(){
+void initInterface(){
 	char * TO_HOST   = getenv("INPATH");
 	char * FROM_HOST = getenv("OUTPATH");
 	Output = fopen(TO_HOST ,"w");
 	Input = fopen(FROM_HOST , "r");
-	if ((Input == NULL) || (Output == NULL)) return 0;
+	if ((Input == NULL) || (Output == NULL)) printf("BAD Pipes :( \n");
 	return 1;
 }
 
