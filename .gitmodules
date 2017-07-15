@@ -1,0 +1,6 @@
+[submodule "riscv-openocd"]
+	path = riscv-openocd
+	url = https://github.com/command-paul/riscv-openocd.git
+[submodule "riscv-isa-sim"]
+	path = riscv-isa-sim
+	url = https://github.com/command-paul/riscv-isa-sim.git
