@@ -4,3 +4,6 @@
 [submodule "riscv-isa-sim"]
 	path = riscv-isa-sim
 	url = https://github.com/command-paul/riscv-isa-sim.git
+[submodule "shakti_public"]
+	path = shakti_public
+	url = https://command-paul@bitbucket.org/command-paul/shakti_public.git
