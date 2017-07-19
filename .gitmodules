@@ -7,3 +7,6 @@
 [submodule "shakti_public"]
 	path = shakti_public
 	url = https://command-paul@bitbucket.org/command-paul/shakti_public.git
+[submodule "riscv-instruction-disassembler"]
+	path = riscv-instruction-disassembler
+	url = https://github.com/nd7493432401/riscv-instruction-disassembler.git
